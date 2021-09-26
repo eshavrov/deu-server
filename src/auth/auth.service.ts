@@ -27,7 +27,6 @@ export class AuthService {
     const candidate = await this.usersService.getUserByEmail(userDto.email);
 
     if (candidate) {
-      console.log('>>>', candidate);
       throw new HttpException(
         'Пользователь с таким email уже существует',
         HttpStatus.BAD_REQUEST,
