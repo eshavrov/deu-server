@@ -1,4 +1,6 @@
-import { Controller, Get, Render } from '@nestjs/common';
+import { Controller, Get, Param, Render } from '@nestjs/common';
+import { map, toArray } from 'rxjs';
+
 import { PagesService } from './pages.service';
 
 @Controller()
@@ -7,19 +9,22 @@ export class PagesController {
 
   @Get('/')
   @Render('index')
-  home() {
+  public home() {
     return {};
   }
 
   @Get('/blog')
   @Render('blog')
-  blog() {
-    return {};
+  public blog() {
+    return this.pagesService.getBlogPosts().pipe(
+      toArray(),
+      map((blogPosts) => ({ blogPosts })),
+    );
   }
 
   @Get('/blog/:id')
   @Render('blog/[id]')
-  blogPost() {
+  public blogPost(@Param('id') id: string) {
     return {};
   }
 }
