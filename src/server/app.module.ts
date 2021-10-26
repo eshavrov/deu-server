@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
+
 import { User } from './users/users.model';
 import { UsersModule } from './users/users.module';
 import { RolesModule } from './roles/roles.module';
@@ -16,7 +17,6 @@ import { PagesModule } from './pages/pages.module';
     ConfigModule.forRoot({
       envFilePath: `.${process.env.NODE_ENV}.env`,
     }),
-
     SequelizeModule.forRoot({
       dialect: 'postgres',
       host: process.env.POSTGRES_HOST,
@@ -27,10 +27,10 @@ import { PagesModule } from './pages/pages.module';
       models: [User, Role, UserRoles],
       autoLoadModels: true,
     }),
+    PagesModule,
     UsersModule,
     RolesModule,
     AuthModule,
-    PagesModule,
   ],
 })
 export class AppModule {}

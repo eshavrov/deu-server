@@ -11,7 +11,7 @@ import { AddRoleDto } from './dto/add-role.dto';
 import { BanUserDto } from './dto/ban-user.dto';
 
 @ApiTags('Пользователи')
-@Controller('users')
+@Controller('/api/users')
 export class UsersController {
   constructor(private usersService: UsersService) {}
 

@@ -1,7 +1,14 @@
-import { Controller, Get, Param, Render } from '@nestjs/common';
-import { map, toArray } from 'rxjs';
+import {
+  Controller,
+  Get,
+  Param,
+  ParseIntPipe,
+  Render,
+  UseInterceptors,
+} from '@nestjs/common';
 
 import { PagesService } from './pages.service';
+import { ParamsInterceptor } from '../params.interceptor';
 
 @Controller()
 export class PagesController {
@@ -15,16 +22,24 @@ export class PagesController {
 
   @Get('/blog')
   @Render('blog')
+  @UseInterceptors(ParamsInterceptor)
   public blog() {
-    return this.pagesService.getBlogPosts().pipe(
-      toArray(),
-      map((blogPosts) => ({ blogPosts })),
-    );
+    return {};
   }
 
   @Get('/blog/:id')
   @Render('blog/[id]')
   public blogPost(@Param('id') id: string) {
-    return {};
+    return { id };
+  }
+
+  @Get('/api/blog-posts')
+  public listBlogPosts() {
+    return this.pagesService.getBlogPosts();
+  }
+
+  @Get('/api/blog-posts/:id')
+  public getBlogPostById(@Param('id', new ParseIntPipe()) id: number) {
+    return this.pagesService.getBlogPost(id);
   }
 }
