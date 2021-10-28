@@ -5,7 +5,9 @@ import {
   ParseIntPipe,
   Render,
   UseInterceptors,
+  Res,
 } from '@nestjs/common';
+import { Response } from 'express';
 
 import { PagesService } from './pages.service';
 import { ParamsInterceptor } from '../params.interceptor';
@@ -41,5 +43,11 @@ export class PagesController {
   @Get('/api/blog-posts/:id')
   public getBlogPostById(@Param('id', new ParseIntPipe()) id: number) {
     return this.pagesService.getBlogPost(id);
+  }
+
+  @Get('/feature/*')
+  @UseInterceptors(ParamsInterceptor)
+  public featurePage(@Res() res: Response) {
+    return res.render(res.req.url.replace(/^\//, ''), {});
   }
 }
