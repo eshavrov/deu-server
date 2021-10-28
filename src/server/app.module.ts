@@ -1,6 +1,10 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
+import { RenderModule } from 'nest-next';
+import Next from 'next';
+
+import { NODE_ENV } from 'src/shared/constants/env';
 
 import { User } from './users/users.model';
 import { UsersModule } from './users/users.module';
@@ -14,8 +18,12 @@ import { PagesModule } from './pages/pages.module';
   controllers: [],
   providers: [],
   imports: [
+    RenderModule.forRootAsync(Next({ dev: NODE_ENV === 'development' }), {
+      viewsDir: null,
+    }),
     ConfigModule.forRoot({
-      envFilePath: `.${process.env.NODE_ENV}.env`,
+      envFilePath: `.${NODE_ENV}.env`,
+      isGlobal: true,
     }),
     SequelizeModule.forRoot({
       dialect: 'postgres',
@@ -27,10 +35,10 @@ import { PagesModule } from './pages/pages.module';
       models: [User, Role, UserRoles],
       autoLoadModels: true,
     }),
-    PagesModule,
     UsersModule,
     RolesModule,
     AuthModule,
+    PagesModule,
   ],
 })
 export class AppModule {}

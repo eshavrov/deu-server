@@ -1,0 +1,26 @@
+{
+	"title": "Simulator zum Deutschlernen",
+	"titleTemplate": "%s - Simulator zum Deutschlernen",
+	"description": "Kostenloser Trainer zum Deutschlernen",
+  "openGraph": {
+		"title": "Simulator zum Deutschlernen",
+		"description": "Kostenloser Trainer zum Deutschlernen",
+		"type": "website",
+		"locale": "ru",
+		"url": "https://deutsch-six.vercel.app/",
+		"site_name": "Simulator zum Deutschlernen",
+    "images": [
+      {
+        "url": "/card.png",
+        "width": 800,
+        "height": 600,
+        "alt": "Simulator zum Deutschlernen"
+      }
+    ]
+  },
+  "twitter": {
+    "handle": "@simulator_zum_deutschlernen",
+    "site": "@simulator_zum_deutschlernen",
+    "cardType": "summary_large_image"
+  }
+}

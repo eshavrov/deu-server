@@ -1,0 +1,55 @@
+.root {
+  text-align: center;
+  padding: 1.5rem;
+  background-color: var(--accent-2);
+
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  font-weight: 500;
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  z-index: 30;
+
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  transition-duration: 500ms;
+}
+
+.root--show {
+  opacity: 1;
+}
+
+.root--hide {
+  opacity: 0;
+}
+
+.title {
+  display: block;
+}
+
+.desc {
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .root {
+    display: flex;
+    text-align: left;
+  }
+
+  .title {
+    display: inline;
+  }
+
+  .desc {
+    display: inline;
+    margin-bottom: 0;
+    margin-left: 0.5rem;
+  }
+}

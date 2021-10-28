@@ -1,0 +1,54 @@
+.root {
+  position: sticky;
+  top: 0px;
+  z-index: 40;
+  transition-property: box-shadow, background-color;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 950ms;
+  min-height: 74px;
+}
+
+.nav {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+
+.user-nav-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1 1 0%;
+}
+
+.shadow-magical {
+  background-color: var(--primary);
+
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.02), 0 0 8px rgba(0, 0, 0, 0.03),
+    0 1px 0 rgba(0, 0, 0, 0.05);
+}
+
+.shadow-magical .nav {
+  padding: 0;
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  flex: 1 1 0%;
+}
+
+.logo {
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 350ms;
+  cursor: pointer;
+  border-radius: 9999px;
+}
+
+.logo:hover {
+  transform: scale(1.25);
+}
