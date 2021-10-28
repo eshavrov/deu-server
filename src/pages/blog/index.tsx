@@ -1,6 +1,9 @@
+import type React from 'react';
 import { GetServerSideProps } from 'next';
 import Link from 'next/link';
-import { FC } from 'react';
+
+import { Layout } from '@components/common';
+
 import { BlogPost } from 'src/shared/types/blog-post';
 import { fetch } from 'src/shared/utils/fetch';
 
@@ -8,13 +11,13 @@ type TBlogPageProps = {
   blogPosts: BlogPost[];
 };
 
-const BlogPage: FC<TBlogPageProps> = ({ blogPosts = [] }) => {
+const BlogPage = ({ blogPosts = [] }: TBlogPageProps) => {
   return (
     <div>
       <h1>BlogPage</h1>
       {blogPosts.map(({ title, id }) => (
         <div key={id}>
-          <Link href={`/${id}`}>{title}</Link>
+          <Link href={`/blog/${id}`}>{title}</Link>
         </div>
       ))}
     </div>
@@ -27,5 +30,7 @@ export const getServerSideProps: GetServerSideProps<TBlogPageProps> =
 
     return { props: { blogPosts } };
   };
+
+BlogPage.Layout = Layout as any;
 
 export default BlogPage;

@@ -1,0 +1,83 @@
+.form {
+  width: 20rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.75rem;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 3rem;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper > * + * {
+  margin-top: 0.75rem;
+  margin-bottom: 0;
+}
+
+.forgot {
+  color: var(--red);
+  border: 1px solid var(--red);
+  padding: 0.75rem;
+}
+
+.link {
+  font-weight: bold;
+  cursor: pointer;
+  display: inline;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.footer {
+  padding-top: 0.25rem;
+  text-align: center;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.grey {
+  color: var(--accent-7);
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  padding-top: 0.5rem;
+  width: 100%;
+}
+
+.achtung-wrapper {
+  color: var(--accent-8);
+}
+
+.achtung-icon {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.achtung {
+  line-height: 1.5rem;
+  font-size: 0.875rem;
+}
+
+@media (max-width: 600px) {
+  .form {
+    width: 100%;
+  }
+}
+
+.error-message {
+  color: red;
+  border: 1px solid red;
+  padding: 0.75rem;
+}

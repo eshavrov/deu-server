@@ -1,0 +1,22 @@
+{
+  "name": "Simulator zum Deutschlernen",
+  "short_name": "Simulator zum Deutschlernen",
+  "description": "Kostenloser Trainer zum Deutschlernen",
+  "display": "standalone",
+  "start_url": "/",
+  "theme_color": "#fff",
+  "background_color": "#000000",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}

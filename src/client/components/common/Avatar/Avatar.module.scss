@@ -1,0 +1,15 @@
+.wrapper {
+	display: inline-block;
+	width: 2rem;
+	height: 2rem;
+	border-radius: 9999px;
+	border-width: 2px;
+	border-color: var(--primary);
+
+	transition-property: all;
+	transition-duration: 150ms;
+}
+
+.wrapper:hover{
+	cursor: pointer;
+}
