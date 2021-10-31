@@ -3,13 +3,13 @@ import React from 'react';
 import { useUI } from '@components/ui/context';
 import { getRandomPairOfColors } from '@lib/colors';
 
-export const useUserAvatar = (name = 'userAvatar') => {
-  const { userAvatar, setUserAvatar } = useUI();
+export const useSchoolLogo = (name = 'logo') => {
+  const { schoolLogo, setSchoolLogo } = useUI();
 
   React.useEffect(() => {
-    if (!userAvatar && localStorage.getItem(name)) {
+    if (!schoolLogo && localStorage.getItem(name)) {
       // Get bg from localStorage and push it to the context.
-      setUserAvatar(localStorage.getItem(name));
+      setSchoolLogo(localStorage.getItem(name));
     }
 
     if (!localStorage.getItem(name)) {
@@ -18,12 +18,12 @@ export const useUserAvatar = (name = 'userAvatar') => {
       const value = `linear-gradient(140deg, ${bg[0]}, ${bg[1]} 100%)`;
 
       localStorage.setItem(name, value);
-      setUserAvatar(value);
+      setSchoolLogo(value);
     }
   }, []);
 
   return {
-    userAvatar,
-    setUserAvatar,
+    schoolLogo,
+    setSchoolLogo,
   };
 };

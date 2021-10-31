@@ -8,6 +8,8 @@ export interface State {
   displayToast: boolean;
   modalView: string;
   userAvatar: string;
+  schoolLogo: string;
+  headerBackground: string;
 }
 
 const initialState = {
@@ -17,6 +19,8 @@ const initialState = {
   modalView: 'LOGIN_VIEW',
   displayToast: false,
   userAvatar: '',
+  schoolLogo: '',
+  headerBackground: '',
 };
 
 type Action =
@@ -44,6 +48,14 @@ type Action =
     }
   | {
       type: 'SET_USER_AVATAR';
+      value: string;
+    }
+  | {
+      type: 'SET_SCHOOL_LOGO';
+      value: string;
+    }
+  | {
+      type: 'SET_HEADER_BACKGROUND';
       value: string;
     };
 
@@ -97,10 +109,25 @@ function uiReducer(state: State, action: Action) {
         modalView: action.view,
       };
     }
+
     case 'SET_USER_AVATAR': {
       return {
         ...state,
         userAvatar: action.value,
+      };
+    }
+
+    case 'SET_SCHOOL_LOGO': {
+      return {
+        ...state,
+        schoolLogo: action.value,
+      };
+    }
+
+    case 'SET_HEADER_BACKGROUND': {
+      return {
+        ...state,
+        headerBackground: action.value,
       };
     }
   }
@@ -132,6 +159,16 @@ export const UIProvider: React.FC = (props) => {
     [dispatch],
   );
 
+  const setSchoolLogo = React.useCallback(
+    (value: string) => dispatch({ type: 'SET_SCHOOL_LOGO', value }),
+    [dispatch],
+  );
+
+  const setHeaderBackground = React.useCallback(
+    (value: string) => dispatch({ type: 'SET_HEADER_BACKGROUND', value }),
+    [dispatch],
+  );
+
   const value = React.useMemo(
     () => ({
       ...state,
@@ -145,6 +182,8 @@ export const UIProvider: React.FC = (props) => {
       closeModal,
       setModalView,
       setUserAvatar,
+      setSchoolLogo,
+      setHeaderBackground,
     }),
     [state],
   );
