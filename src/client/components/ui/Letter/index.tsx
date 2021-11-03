@@ -1,24 +1,20 @@
 import s from './Letter.module.scss';
 
 export interface LetterProps {
-  width?: string,
-  height?: string,
-  background?: string,
+  width?: string;
+  height?: string;
   children?: React.ReactChild | React.ReactNode;
   onClick: () => void;
 }
 
-const Letter: React.FC<LetterProps> =
-  ({
-    width,
-    height,
-    background,
-     children ,
-     onClick,
-  }) => {
-
+const Letter: React.FC<LetterProps> = ({
+  width,
+  height,
+  children,
+  onClick,
+}) => {
   return (
-    <div style={{width, height, background}} className={s['letter']} onClick={onClick}>
+    <div style={{ width, height }} className={s.letter} onClick={onClick}>
       {children}
     </div>
   );
