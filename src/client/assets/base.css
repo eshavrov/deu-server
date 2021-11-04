@@ -39,6 +39,8 @@
 
   --font-sans: -apple-system, system-ui, BlinkMacSystemFont, 'Helvetica Neue',
     'Helvetica', sans-serif;
+
+  --web-ui_letter-font-size: 48px;
 }
 
 [data-theme='dark'] {
