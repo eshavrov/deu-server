@@ -41,6 +41,8 @@
     'Helvetica', sans-serif;
 
   --web-ui_letter-font-size: 48px;
+  --letter-size-height: 76px;
+  --letter-size-width: 84px;
 }
 
 [data-theme='dark'] {

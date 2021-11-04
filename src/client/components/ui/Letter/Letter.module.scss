@@ -2,6 +2,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: var(--letter-size-height);
+  height: var(--letter-size-width);
   color: #6B5FF0;
   font-size: var(--web-ui_letter-font-size);
   line-height: 56px;
@@ -10,6 +12,5 @@
   box-sizing: border-box;
   border-radius: var(--web-ui_letter-border-radius, 10px);
   cursor: grab;
-  padding: 14px 21px;
   margin: 0px 15px;
 }

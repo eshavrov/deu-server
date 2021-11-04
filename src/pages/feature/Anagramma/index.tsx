@@ -12,7 +12,7 @@ export default function Anagramma() {
       </p>
       <hr className={s.line} />
       <div className={s.letters}>
-        <Letter char={'D'} />
+        <Letter char="D" />
       </div>
 
     </div>
