@@ -2,8 +2,7 @@ import React from 'react';
 import s from './Letter.module.scss';
 
 export interface LetterProps {
-  width?: string;
-  height?: string;
+  size?: string;
   char: string;
   onClick?: () => void;
   color?: string;
@@ -16,19 +15,18 @@ export interface LetterProps {
  */
 
 const Letter: React.FC<LetterProps> = ({
-  width,
-  height,
+  size,
   char,
   color,
   onClick,
 }) => {
   const style = React.useMemo(() => {
     return {
-      width,
-      height,
+      width: size,
+      height: size,
       color,
     };
-  }, [width, height, color]);
+  }, [size, color]);
 
   return (
     <div style={style} className={s.letter} onClick={onClick}>
