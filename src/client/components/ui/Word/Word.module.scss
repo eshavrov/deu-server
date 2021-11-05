@@ -1,0 +1,9 @@
+.word {
+  display: inline-flex;
+  padding: 0.5rem 1rem;
+  border-radius: var(--web-ui_border-radius);
+  text-align: center;
+  background-color: var(--secondary);
+  color: var(--primary);
+  user-select: none;
+}
