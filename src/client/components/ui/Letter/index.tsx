@@ -14,12 +14,7 @@ export interface LetterProps {
  * `<Letter char='f' />`
  */
 
-const Letter: React.FC<LetterProps> = ({
-  size,
-  char,
-  color,
-  onClick,
-}) => {
+const Letter: React.FC<LetterProps> = ({ size, char, color, onClick }) => {
   const style = React.useMemo(() => {
     return {
       width: size,

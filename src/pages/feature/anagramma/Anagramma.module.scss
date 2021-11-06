@@ -8,6 +8,7 @@
   line-height: 42px;
   color: #2A2A38;
   margin: 170px auto 185px auto;
+
 }
 .line {
   width: 650px;
@@ -18,4 +19,10 @@
   display: flex;
   justify-content: center;
   margin-bottom: 50px;
+}
+.button__row {
+  width: 1068px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
 }
