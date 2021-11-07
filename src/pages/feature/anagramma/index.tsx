@@ -1,10 +1,37 @@
-import s from './Anagramma.module.scss';
-import { useEffect, useState } from 'react';
-import { Button } from '@components/ui';
+import React from 'react';
 import Letter from '@components/ui/Letter';
+import { Button } from '@components/ui';
+import s from './Anagramma.module.scss';
+
+//Функция для растановки элементов массива в хаотичном порядке
+function shuffleArray(str) {
+  const result = str.split('');
+  const newArr = [];
+
+  while (result.length > 0) {
+    const random = Math.floor(Math.random() * (result.length - 1 - 0 + 1) + 0);
+    const elem = result.splice(random, 1)[0];
+    newArr.push(elem);
+  }
+
+  return newArr;
+}
+
+//Функция для проверки слова на правильность
+function checkWord(word, checkList) {
+  const result = word.map((item) => {
+    return item.value;
+  });
+
+  if (result.join('') === checkList) {
+    alert('True');
+  } else {
+    alert('False');
+  }
+}
 
 export default function Anagramma() {
-  const [data, setData] = useState([
+  const [data, setData] = React.useState([
     { id: 0, word: 'black' },
     { id: 1, word: 'blue' },
     { id: 2, word: 'red' },
@@ -12,10 +39,10 @@ export default function Anagramma() {
   ]);
 
   //State для хранения текущего слова на экране
-  const [currentCard, setCurrentCard] = useState([]);
+  const [currentCard, setCurrentCard] = React.useState([]);
 
   //State для изменения слова на экране
-  const [item, setItem] = useState(0);
+  const [item, setItem] = React.useState(0);
 
   //Разбил слово из data в массив из объектов и диспатчу их в currentCard
   function passWord() {
@@ -25,71 +52,26 @@ export default function Anagramma() {
     const arr = shuffleArray(currentWord);
 
     //Просто массив чисел для получения случайных букв из массива
-    const randomArr = [];
-    for (let i = 0; i < arr.length; i++) {
-      randomArr.push(i);
-    }
+    const randomArr = arr.map((item, index) => index);
 
     //Преобразование каждого элемента массива в объект
-    const obj = arr.reduce(function(sum, elem, index, array) {
-      return (
-        (sum[index] = { id: index, order: randomArr.pop(), value: elem }), sum
-      );
-    }, []);
+    const obj = arr.map((item, index, arr) => {
+      return { id: index, order: randomArr.pop(), value: item };
+    });
     setCurrentCard(obj);
   }
 
   //Вывод слова на экран
-  useEffect(() => {
+  React.useEffect(() => {
     passWord();
   }, [item]);
 
-  //Функция для изменения текущего слова на экране
-  function nextWord() {
-    setItem(item + 1);
-  }
-
-  //Функция для растановки элементов массива в хаотичном порядке
-  function shuffleArray(str) {
-    const result = str.split('');
-    const newArr = [];
-
-    while (result.length > 0) {
-      const random = Math.floor(
-        Math.random() * (result.length - 1 - 0 + 1) + 0,
-      );
-      const elem = result.splice(random, 1)[0];
-      newArr.push(elem);
-    }
-
-    return newArr;
-  }
-
-  //Функция для проверки слова на правильность
-  function checkWord() {
-    const word = currentCard.map((elem) => {
-      return elem.value;
-    });
-
-    if (word.join('') === data[item].word) {
-      alert('True');
-    } else {
-      alert('False');
-    }
-  }
-
   //Запомнить взятую  букву
-  const [newCard, setNewCard] = useState(null);
+  const [newCard, setNewCard] = React.useState(null);
 
   //Диспатчу букву в newCard
   function dragStartHandler(e, elem) {
     setNewCard(elem);
-  }
-
-  function dragLeaveHandler(e) {
-  }
-
-  function dragEndHandler(e) {
   }
 
   function dragOverHandler(e) {
@@ -113,13 +95,14 @@ export default function Anagramma() {
     );
   }
 
+  //Функция для изменения текущего слова на экране
+  function nextWord() {
+    setItem(item + 1);
+  }
+
   //Функция для размещения элементов по порядку
   const sortCards = (a, b) => {
-    if (a.order > b.order) {
-      return 1;
-    } else {
-      return -1;
-    }
+    return a.order - b.order;
   };
 
   return (
@@ -127,18 +110,17 @@ export default function Anagramma() {
       <p className={s.title}>
         Перемешаны буквы слова, необходимо поставить на нужное место
       </p>
-      <hr className={s.line}/>
+      <hr className={s.line} />
       <div className={s.letters}>
         {currentCard.sort(sortCards).map((elem) => {
           return (
             <div
+              key={elem.id}
+              className={s.card}
               onDragStart={(e) => dragStartHandler(e, elem)}
-              onDragLeave={(e) => dragLeaveHandler(e)}
-              onDragEnd={(e) => dragEndHandler(e)}
               onDragOver={(e) => dragOverHandler(e)}
               onDrop={(e) => dropHandler(e, elem)}
-              draggable={true}
-              className={s.card}
+              draggable
             >
               <Letter char={elem.value}/>
             </div>
@@ -146,8 +128,8 @@ export default function Anagramma() {
         })}
       </div>
       <div className={s.button__row}>
-        <Button onClick={() => nextWord()}>Пропустить</Button>
-        <Button onClick={() => checkWord()}>Проверить</Button>
+        <Button onClick={nextWord}>Пропустить</Button>
+        <Button onClick={() => checkWord(currentCard, data[item].word)}>Проверить</Button>
       </div>
     </div>
   );
