@@ -7,12 +7,11 @@
   // сбрасываем стили по-умолчанию
   appearance: none;
 
-  background-color: var(--accent-0);
-  border: 1px solid var(--main-color);
   padding: 1rem 1rem;
-
   line-height: 100%;
 
+  background-color: var(--accent-0);
+  border: 1px solid var(--main-color);
   border-radius: var(--web-ui_select-border-radius);
 
   &:not([multiple]) {

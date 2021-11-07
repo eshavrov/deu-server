@@ -6,14 +6,13 @@
   padding: 0.5rem;
   background-clip: padding-box;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  line-height: 100%;
+  flex-basis: 100%;
 
   background-color: var(--accent-0);
   border: 1px solid var(--main-color);
-  line-height: 100%;
-
   border-radius: var(--web-ui_select-border-radius);
   font-size: var(--font-size);
-  flex-basis: 100%;
 
   // TODO: нужно уйти от вычислений.
   // сумма вертикальных отступов + шрифт(--font-size) + бордюр(2px)
@@ -23,7 +22,6 @@
 .list {
   margin: 0;
   padding: 0;
-
   list-style: none;
 
   display: flex;
@@ -33,21 +31,19 @@
 }
 
 .badge {
+  display: inline-flex;
+  align-items: center;
   user-select: none;
   padding: 0 0.5rem 0;
+  max-width: 100%;
   white-space: nowrap;
   border-radius: var(--web-ui_border-radius-small);
+  color: var(--main-badge-text);
+  background-color: var(--main-secondary-color);
 
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 
-  max-width: 100%;
-
-  display: inline-flex;
-  align-items: center;
-
-  color: var(--main-badge-text);
-  background-color: var(--main-secondary-color);
 
   &:hover {
     background-color: var(--cyan);
@@ -64,22 +60,15 @@
 }
 
 .close {
-  float: right;
-  font-size: 1.5rem;
-  font-weight: 700;
-  line-height: 1;
-
-  padding: 0;
-  background-color: transparent;
-  border: 0;
-  color: var(--main-color);
-  font-size: 125%;
-  line-height: 1;
-  float: none;
-  margin-left: 0.25rem;
-  cursor: pointer;
   display: flex;
   align-items: center;
+  appearance: none;
+  padding: 0;
+  border: 0;
+  margin-left: 0.25rem;
+  background-color: transparent;
+  cursor: pointer;
+  color: var(--main-color);
 
   &:focus {
     outline: 3px solid var(--web-ui_focus-color);
