@@ -1,0 +1,34 @@
+.select {
+  // наследуем стили контейнера
+  font: inherit;
+  letter-spacing: inherit;
+  word-spacing: inherit;
+
+  // сбрасываем стили по-умолчанию
+  appearance: none;
+
+  padding: 1rem 1rem;
+  line-height: 100%;
+
+  background-color: var(--accent-0);
+  border: 1px solid var(--main-color);
+  border-radius: var(--web-ui_select-border-radius);
+
+  &:not([multiple]) {
+    padding-right: 2.2rem;
+    background-repeat: no-repeat;
+    background-position: calc(100% - 0.8rem) 1.5rem;
+    background-size: 1rem auto;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 19 10' fill='none' stroke='%236b5ff0' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m1 1 8.5 7L18 1' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  }
+
+  /* Скрыть значек стрелки в IE */
+  &::-ms-expand {
+    display: none;
+  }
+
+  &:focus {
+    outline: 3px solid var(--web-ui_focus-color);
+    color: var(--web-ui_focus-color);
+  }
+}

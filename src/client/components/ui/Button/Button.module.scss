@@ -3,7 +3,7 @@
   color: var(--accent-1);
   cursor: pointer;
   display: inline-flex;
-  border-radius: 0.25rem;
+  border-radius: var(--web-ui_border-radius);
   line-height: 1.5rem;
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -27,7 +27,7 @@
 }
 
 .root:focus {
-  box-shadow: 0 0 0 3px var(--focus);
+  box-shadow: 0 0 0 3px var(--web-ui_focus-color);
   outline: 2px solid transparent;
   outline-offset: 2px;
 }
