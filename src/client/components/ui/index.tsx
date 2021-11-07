@@ -4,3 +4,6 @@ export { default as Container } from './Container';
 export { default as LoadingDots } from './LoadingDots';
 export { default as Modal } from './Modal';
 export { default as Input } from './Input';
+export { default as Checkbox } from './Checkbox';
+export { default as Select } from './Select';
+export { default as Chips, Chip } from './Chips';

@@ -1,0 +1,86 @@
+.checkbox {
+  cursor: pointer;
+  // не позволяем пользователю выделять контент
+  user-select: none;
+
+  display: flex;
+
+  // только для однострочного комментария, для многострочного start и поиграться с отступом
+  align-items: center;
+
+  --outline-color: var(--web-ui_checked-state-bg-color);
+
+  // это решение не кроссбраузерно, можно изменить, если возникнут прицеденты
+  gap: var(--web-ui_checkbox-gap);
+
+  // hide the checkbox accessibly
+  & input[type='checkbox'] {
+    // убираем из основного потока
+    position: absolute;
+
+    // Устанавливаем тот же размер что и у SVG
+    width: 22px;
+    height: 22px;
+
+    // Делаем невидимым сам элемент (не 0, так как скринридеры могут перестать его читать)
+    opacity: 0.00001;
+  }
+
+  // Cтили для SVG
+  & svg {
+    width: 22px;
+    height: 22px;
+
+    .background {
+      fill: var(--web-ui_checked-state-bg-color);
+      stroke: var(--web-ui_checked-state-bg-color);
+    }
+
+    // для плавности переходов
+    * {
+      transition: all 0.1s linear;
+    }
+  }
+
+  // Если чекбокс выбран, то изменяем стиль SVG
+  & input[type='checkbox']:checked + svg {
+    .background {
+      fill: var(--web-ui_checked-state-bg-color);
+      stroke: var(--web-ui_checked-state-bg-color);
+    }
+
+    .checkmark {
+      stroke: var(--web-ui_checked-state-check-color);
+    }
+  }
+
+  // Состояние фокуса
+  & input[type='checkbox']:focus + svg {
+    outline: 3px solid var(--web-ui_focus-color);
+    outline-offset: var(--web-ui_outline-offset);
+  }
+
+  // Не показываем стили фокуса, если пользователь сделал обычный клик
+  & input[type='checkbox']:focus:not(:focus-visible) + svg {
+    outline: none;
+  }
+
+  /* Поддержка режима высокой контрастности Windows (WHCM) */
+  @media screen and (-ms-high-contrast: active) {
+    & svg {
+      .background {
+        stroke: windowText;
+      }
+    }
+
+    & input[type='checkbox']:checked ~ svg {
+      .background {
+        fill: windowText;
+      }
+
+      .checkmark {
+        stroke: highlight;
+      }
+    }
+  }
+}

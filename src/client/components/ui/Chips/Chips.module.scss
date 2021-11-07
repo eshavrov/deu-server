@@ -1,0 +1,93 @@
+.root {
+  --font-size: 18px;
+
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  background-clip: padding-box;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+  background-color: var(--accent-0);
+  border: 1px solid var(--main-color);
+  line-height: 100%;
+
+  border-radius: var(--web-ui_select-border-radius);
+  font-size: var(--font-size);
+  flex-basis: 100%;
+
+  // TODO: нужно уйти от вычислений.
+  // сумма вертикальных отступов + шрифт(--font-size) + бордюр(2px)
+  min-height: calc(2rem + var(--font-size) + 2px);
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.badge {
+  user-select: none;
+  padding: 0 0.5rem 0;
+  white-space: nowrap;
+  border-radius: var(--web-ui_border-radius-small);
+
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+  max-width: 100%;
+
+  display: inline-flex;
+  align-items: center;
+
+  color: var(--main-badge-text);
+  background-color: var(--main-secondary-color);
+
+  &:hover {
+    background-color: var(--cyan);
+  }
+}
+
+.content {
+  overflow: hidden;
+  padding: 0.5rem 0.5rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex-grow: 1;
+  box-sizing: border-box;
+}
+
+.close {
+  float: right;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+
+  padding: 0;
+  background-color: transparent;
+  border: 0;
+  color: var(--main-color);
+  font-size: 125%;
+  line-height: 1;
+  float: none;
+  margin-left: 0.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+
+  &:focus {
+    outline: 3px solid var(--web-ui_focus-color);
+    outline-offset: var(--web-ui_outline-offset);
+    color: var(--web-ui_focus-color);
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+}

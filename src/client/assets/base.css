@@ -3,6 +3,11 @@
   --secondary: #111;
   --selection: var(--cyan);
 
+  --main-color: #6b5ff0;
+  --main-secondary-color: #d5cdff;
+  --main-no-selected: #efefef;
+  --main-badge-text: #2a2a38;
+
   --text-base: #000000;
   --text-primary: #000000;
   --text-secondary: white;
@@ -37,6 +42,19 @@
   --accent-8: #111111;
   --accent-9: #000;
 
+  --break-point-m: 1080px;
+
+  --web-ui_outline-offset: 2px;
+  --web-ui_focus-color: var(--blue);
+  --web-ui_border-radius-small: 4px;
+  --web-ui_border-radius: 8px;
+  --web-ui_select-border-radius: var(--web-ui_border-radius);
+
+  /* checkbox component */
+  --web-ui_checkbox-gap: var(--web-ui_border-radius);
+  --web-ui_checked-state-bg-color: var(--accent-0);
+  --web-ui_checked-state-check-color: var(--main-color);
+
   --font-sans: -apple-system, system-ui, BlinkMacSystemFont, 'Helvetica Neue',
     'Helvetica', sans-serif;
 }
@@ -63,6 +81,8 @@
   --accent-2: #333333;
   --accent-1: #111111;
   --accent-0: #000;
+
+  --web-ui_focus-color: var(--purple);
 }
 
 *,

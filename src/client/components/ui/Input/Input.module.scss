@@ -16,7 +16,7 @@
 }
 
 .root:focus {
-  box-shadow: 0 0 0 3px var(--focus-gray);
+  box-shadow: 0 0 0 3px var(--web-ui_focus-color-gray);
   outline: 2px solid transparent;
   outline-offset: 2px;
 }

@@ -1,19 +1,18 @@
 const Cross = ({ ...props }) => {
   return (
     <svg
-      viewBox="0 0 24 24"
-      width="24"
-      height="24"
+      viewBox="0 0 11 11"
+      width="11"
+      height="11"
       stroke="currentColor"
-      strokeWidth="1.5"
+      strokeWidth="1"
       strokeLinecap="round"
       strokeLinejoin="round"
       fill="none"
       shapeRendering="geometricPrecision"
       {...props}
     >
-      <path d="M18 6L6 18" />
-      <path d="M6 6l12 12" />
+      <path d="M10 1L1 10M10 10L1 1L10 10Z" />
     </svg>
   );
 };
