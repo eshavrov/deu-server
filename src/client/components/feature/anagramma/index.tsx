@@ -53,16 +53,16 @@ const Anagramma = (props) => {
   // Запомнить взятую  букву
   const [takenSymbol, setTakenSymbol] = React.useState(null);
 
-  function dragStartHandler(event, elem) {
+  function onDragStart(event, elem) {
     setTakenSymbol(elem);
   }
 
-  function dragOverHandler(event) {
+  function onDragOver(event) {
     event.preventDefault();
   }
 
   // Функция для перестановки букв
-  function dropHandler(event, elem) {
+  function onDrop(event, elem) {
     event.preventDefault();
 
     setCharList(
@@ -94,9 +94,9 @@ const Anagramma = (props) => {
             <div
               key={elem.id}
               className={s.card}
-              onDragStart={(event) => dragStartHandler(event, elem)}
-              onDragOver={(event) => dragOverHandler(event)}
-              onDrop={(event) => dropHandler(event, elem)}
+              onDragStart={(event) => onDragStart(event, elem)}
+              onDragOver={onDragOver}
+              onDrop={(event) => onDrop(event, elem)}
               draggable
             >
               <Letter char={elem.value} />
