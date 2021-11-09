@@ -6,72 +6,53 @@ import { Button } from '@components/ui';
 
 import s from './Anagramma.module.scss';
 
-//Функция для растановки элементов массива в хаотичном порядке
+//Преобразует строку в массив случайных элементов
 function shuffleArray(str) {
   const arr = str.split('');
-  const newArr = [];
+  const result = [];
 
   while (arr.length > 0) {
     const random = Math.floor(Math.random() * arr.length);
     const elem = arr.splice(random, 1);
-    newArr.push(elem);
+    result.push(elem);
   }
 
-  return newArr;
+  return result;
 }
 
 //Функция для проверки слова на правильность
 function checkWord(symbols, word) {
-  const result = symbols.map((item) => {
-    return item.value;
-  });
+  const result = symbols.reduce((acc, item) => acc + item.value, []);
 
-  if (result.join('') === word) {
-    alert('True');
-  } else {
-    alert('False');
-  }
+  return result === word ? alert('true') : alert('false');
 }
 
-//Разбил строку в массив из объектов
-function passWord(currentWord) {
+//Преобразует строку в массив из объектов
+function transformValue(currentWord) {
   //Разбил строку в массив случайных элементов
   const arr = shuffleArray(currentWord);
 
-  //Просто массив чисел для получения случайных букв из массива
-  const arrayNum = arr.map((item, index) => index);
-
-  //Преобразование каждого элемента массива в объект
-  const obj = arr.map((item, index) => {
-    return { id: index, order: arrayNum.pop(), value: item };
-  });
-
-  return obj;
+  //Разбил каждый элемент массива в объект
+  return arr.map((item, index) => ({ id: index, order: index, value: item }));
 }
 
-//Функция для размещения элементов по порядку
-const compare = (a, b) => {
-  return a.order - b.order;
-};
+//Размещения элементов по порядку
+const compare = (a, b) => a.order - b.order;
 
-export default function Anagramma (props) {
+const Anagramma = (props) => {
   const { value, className } = props;
 
   //State для хранения текущего слова на экране
-  const [currentArr, setCurrentCard] = React.useState([]);
-
-  //State для изменения слова на экране
-  const [item, setItem] = React.useState(0);
+  const [currentWord, setCurrentWord] = React.useState([]);
 
   //Вывод слова на экран
   React.useEffect(() => {
-    setCurrentCard(passWord(value));
-  }, [value, setCurrentCard]);
+    setCurrentWord(transformValue(value));
+  }, [value, setCurrentWord]);
 
   //Запомнить взятую  букву
   const [takenSymbol, setTakenSymbol] = React.useState(null);
 
-  //Диспатчу букву в newCard
   function onDragStart(event, elem) {
     setTakenSymbol(elem);
   }
@@ -84,8 +65,8 @@ export default function Anagramma (props) {
   function onDrop(event, elem) {
     event.preventDefault();
 
-    setCurrentCard(
-      currentArr.map((item) => {
+    setCurrentWord(
+      currentWord.map((item) => {
         if (item.id === elem.id) {
           return { ...item, order: takenSymbol.order };
         }
@@ -97,7 +78,7 @@ export default function Anagramma (props) {
     );
   }
 
-  const items = currentArr.sort(compare);
+  const items = currentWord.sort(compare);
 
   const rootClassName = cn(className, s.word);
 
@@ -124,11 +105,11 @@ export default function Anagramma (props) {
         })}
       </div>
       <div className={s.button__row}>
-        <Button onClick={() => setItem(item + 1)}>Пропустить</Button>
-        <Button onClick={() => checkWord(currentArr, value)}>
-          Проверить
-        </Button>
+        <Button>Пропустить</Button>
+        <Button onClick={() => checkWord(currentWord, value)}>Проверить</Button>
       </div>
     </div>
   );
-}
+};
+
+export default Anagramma;

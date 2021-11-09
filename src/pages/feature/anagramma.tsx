@@ -10,7 +10,5 @@ export default function Component() {
     { id: 3, word: 'green' },
   ];
 
-  return (
-    <Anagramma value={'black'} />
-  )
+  return <Anagramma value={'black'} />;
 }
