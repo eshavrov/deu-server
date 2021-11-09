@@ -1,6 +1,7 @@
 .word {
   text-align: center;
 }
+
 .title {
   max-width: 736px;
   font-weight: 500;
@@ -9,13 +10,26 @@
   color: #2A2A38;
   margin: 170px auto 185px auto;
 }
+
 .line {
-  width: 650px;
+  max-width: 650px;
   border-bottom: 3px solid #C4C4C4;
   margin-bottom: 64px;
 }
-.letters{
+
+.letters {
   display: flex;
   justify-content: center;
   margin-bottom: 50px;
+}
+
+.card {
+  margin: var(--letter-margin);
+}
+
+.button__row {
+  max-width: 1068px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
 }

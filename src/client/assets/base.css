@@ -60,6 +60,7 @@
 
   --web-ui_letter-font-size: 48px;
   --letter-size: 84px;
+  --letter-margin: 0px 15px;
 }
 
 [data-theme='dark'] {
