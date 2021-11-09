@@ -13,7 +13,7 @@ const mainlangs = [
   { value: 'de', label: 'Немецком' },
   { value: 'en', label: 'Английском' },
   { value: 'fr', label: 'Французском' },
-  { value: 'it', label: 'Италианском' },
+  { value: 'it', label: 'Итальянском' },
 ];
 
 const langs = [

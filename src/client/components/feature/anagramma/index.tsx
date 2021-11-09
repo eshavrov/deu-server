@@ -6,7 +6,7 @@ import { Button } from '@components/ui';
 
 import s from './Anagramma.module.scss';
 
-//Преобразует строку в массив случайных элементов
+// Преобразует строку в массив случайных элементов
 function shuffleArray(str) {
   const arr = str.split('');
   const result = [];
@@ -20,14 +20,14 @@ function shuffleArray(str) {
   return result;
 }
 
-//Функция для проверки слова на правильность
+// Функция для проверки слова на правильность
 function checkWord(symbols, word) {
   const result = symbols.reduce((acc, item) => acc + item.value, []);
 
   return result === word ? alert('true') : alert('false');
 }
 
-//Преобразует строку в массив из объектов
+// Преобразует строку в массив из объектов
 function transformValue(currentWord) {
   //Разбил строку в массив случайных элементов
   const arr = shuffleArray(currentWord);
@@ -36,37 +36,37 @@ function transformValue(currentWord) {
   return arr.map((item, index) => ({ id: index, order: index, value: item }));
 }
 
-//Размещения элементов по порядку
+// Размещения элементов по порядку
 const compare = (a, b) => a.order - b.order;
 
 const Anagramma = (props) => {
   const { value, className } = props;
 
-  //State для хранения текущего слова на экране
-  const [currentWord, setCurrentWord] = React.useState([]);
+  // State для хранения текущего слова на экране
+  const [charList, setCharList] = React.useState([]);
 
-  //Вывод слова на экран
+  // Вывод слова на экран
   React.useEffect(() => {
-    setCurrentWord(transformValue(value));
-  }, [value, setCurrentWord]);
+    setCharList(transformValue(value));
+  }, [value, setCharList]);
 
-  //Запомнить взятую  букву
+  // Запомнить взятую  букву
   const [takenSymbol, setTakenSymbol] = React.useState(null);
 
-  function onDragStart(event, elem) {
+  function dragStartHandler(event, elem) {
     setTakenSymbol(elem);
   }
 
-  function onDragOver(event) {
+  function dragOverHandler(event) {
     event.preventDefault();
   }
 
-  //Функция для перестановки букв
-  function onDrop(event, elem) {
+  // Функция для перестановки букв
+  function dropHandler(event, elem) {
     event.preventDefault();
 
-    setCurrentWord(
-      currentWord.map((item) => {
+    setCharList(
+      charList.map((item) => {
         if (item.id === elem.id) {
           return { ...item, order: takenSymbol.order };
         }
@@ -78,7 +78,7 @@ const Anagramma = (props) => {
     );
   }
 
-  const items = currentWord.sort(compare);
+  const items = charList.sort(compare);
 
   const rootClassName = cn(className, s.word);
 
@@ -94,9 +94,9 @@ const Anagramma = (props) => {
             <div
               key={elem.id}
               className={s.card}
-              onDragStart={(event) => onDragStart(event, elem)}
-              onDragOver={(event) => onDragOver(event)}
-              onDrop={(event) => onDrop(event, elem)}
+              onDragStart={(event) => dragStartHandler(event, elem)}
+              onDragOver={(event) => dragOverHandler(event)}
+              onDrop={(event) => dropHandler(event, elem)}
               draggable
             >
               <Letter char={elem.value} />
@@ -106,7 +106,7 @@ const Anagramma = (props) => {
       </div>
       <div className={s.button__row}>
         <Button>Пропустить</Button>
-        <Button onClick={() => checkWord(currentWord, value)}>Проверить</Button>
+        <Button onClick={() => checkWord(charList, value)}>Проверить</Button>
       </div>
     </div>
   );
