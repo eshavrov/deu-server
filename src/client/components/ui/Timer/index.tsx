@@ -4,20 +4,31 @@ import cn from 'classnames';
 import s from './Timer.module.scss';
 
 const Timer = (props) => {
-  const { millis, className } = props;
+  const { milliseconds, className } = props;
 
-  const [totalSeconds, setTotalSeconds] = React.useState(millis / 1000);
+  const [totalSeconds, setTotalSeconds] = React.useState(milliseconds);
+
+  function startTimer() {
+    setTotalSeconds(totalSeconds - 1000);
+  }
+
+  function stopTimer() {
+    setTotalSeconds(0);
+  }
 
   React.useEffect(() => {
     if (totalSeconds > 0) {
-      setTimeout(() => setTotalSeconds(totalSeconds - 1), 1000);
+      const timerID = setTimeout(startTimer, 1000);
+
+      return () => clearTimeout(timerID);
     } else {
-      setTotalSeconds(0);
+      stopTimer();
     }
   }, [totalSeconds]);
 
-  const seconds = totalSeconds % 60;
-  const minutes = Math.floor(totalSeconds / 60);
+
+  const seconds = (totalSeconds / 1000) % 60;
+  const minutes = Math.floor((totalSeconds / 1000) / 60);
   const result =
     (minutes < 10 ? '0' : '') +
     minutes +

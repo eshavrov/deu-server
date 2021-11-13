@@ -86,7 +86,7 @@ const Anagramma = (props) => {
   return (
     <div className={rootClassName}>
       <div className={s.timer}>
-        <Timer millis={65000} />
+        <Timer milliseconds={90000} />
       </div>
       <p className={s.title}>
         Перемешаны буквы слова, необходимо поставить на нужное место
