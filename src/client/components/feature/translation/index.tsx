@@ -4,17 +4,19 @@ import cn from 'classnames';
 import Word from '@components/ui/Word';
 import { Button } from '@components/ui';
 
-import s from '@components/feature/translation/Translation.module.scss';
+import s from './Translation.module.scss';
+
+const listWords = [
+  { id: 0, value: 'дерево' },
+  { id: 1, value: 'цветок' },
+  { id: 2, value: 'дом' },
+  { id: 3, value: 'конфета' },
+  { id: 4, value: 'природа' },
+];
+
+const realWord = 'Holz';
 
 const Translation = (props) => {
-  const listWords = [
-    { id: 0, value: 'дерево' },
-    { id: 1, value: 'цветок' },
-    { id: 2, value: 'дом' },
-    { id: 3, value: 'конфета' },
-    { id: 4, value: 'природа' },
-  ];
-
   const rootClassName = cn(s.container);
 
   return (
@@ -23,11 +25,11 @@ const Translation = (props) => {
         Перемешаны буквы слова, необходимо поставить на нужное место
       </p>
       <div className={s.word}>
-        <p>Holz</p>
+        <p>{realWord}</p>
       </div>
       <div className={s.words}>
         {listWords.map((item) => {
-          return <Word value={item.value} />;
+          return <Word key={item.id} value={item.value} />;
         })}
       </div>
       <div className={s.button__row}>
