@@ -17,11 +17,13 @@ const Timer = (props) => {
   }
 
   React.useEffect(() => {
+    if(totalSeconds > 0) {
       const timerID = setTimeout(startTimer, 1000);
-
       return () => clearTimeout(timerID);
+    } else {
+      startTimer();
+    }
   }, [totalSeconds]);
-
 
 
   const seconds = (totalSeconds / 1000) % 60;
