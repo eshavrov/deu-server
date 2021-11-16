@@ -4,22 +4,35 @@ declare global {
   }
 }
 
-const debounce = (func, wait, immediate) => {
+export const debounce = (func, wait, immediate) => {
   let timeout;
 
   return function (...args) {
     const later = function () {
       timeout = null;
-      if (!immediate) func.apply(this, args);
+
+      if (!immediate) {
+        func.apply(this, args);
+      }
     };
+
     const callNow = immediate && !timeout;
+
     clearTimeout(timeout);
+
     timeout = setTimeout(later, wait);
-    if (callNow) func.apply(this, args);
+
+    if (callNow) {
+      func.apply(this, args);
+    }
   };
 };
 
-const concatTranscripts = (...transcriptParts: string[]): string => {
+/**
+ * Конкатенация строк, разднлитель пробел.
+ * > Предварительно удяляются лишние пробелы в каждой из строк
+ */
+export const concatTranscripts = (...transcriptParts: string[]): string => {
   return transcriptParts
     .map((t) => t.trim())
     .join(' ')
@@ -33,10 +46,11 @@ const namedParam = /(\(\?)?:\w+/g;
 const splatParam = /\*/g;
 const escapeRegExp = /[-{}[\]+?.,\\^$|#]/g;
 
-const commandToRegExp = (command) => {
+export const commandToRegExp = (command) => {
   if (command instanceof RegExp) {
     return new RegExp(command.source, 'i');
   }
+
   command = command
     .replace(escapeRegExp, '\\$&')
     .replace(optionalParam, '(?:$1)?')
@@ -45,11 +59,21 @@ const commandToRegExp = (command) => {
     })
     .replace(splatParam, '(.*?)')
     .replace(optionalRegex, '\\s*$1?\\s*');
+
   return new RegExp('^' + command + '$', 'i');
 };
 
-// this is from https://github.com/aceakash/string-similarity
-const compareTwoStringsUsingDiceCoefficient = (first, second) => {
+// Первоночальный источник https://github.com/aceakash/string-similarity
+// TODO: Перепроверить логику алгоритма (https://github.com/aceakash/string-similarity/issues/114)
+/**
+ * Находит степень сходства между двумя строками на основе коэффициента Дайса
+ * https://en.wikipedia.org/wiki/S%C3%B8rensen%E2%80%93Dice_coefficient
+ */
+export const compareTwoStringsUsingDiceCoefficient = (
+  first: string,
+  second: string,
+): number => {
+  console.log('compareTwoStringsUsingDiceCoefficient', first, second);
   first = first.replace(/\s+/g, '').toLowerCase();
   second = second.replace(/\s+/g, '').toLowerCase();
 
@@ -60,6 +84,7 @@ const compareTwoStringsUsingDiceCoefficient = (first, second) => {
   if (first.length < 2 || second.length < 2) return 0; // if either is a 1-letter string
 
   const firstBigrams = new Map();
+
   for (let i = 0; i < first.length - 1; i++) {
     const bigram = first.substring(i, i + 2);
     const count = firstBigrams.has(bigram) ? firstBigrams.get(bigram) + 1 : 1;
@@ -68,6 +93,7 @@ const compareTwoStringsUsingDiceCoefficient = (first, second) => {
   }
 
   let intersectionSize = 0;
+
   for (let i = 0; i < second.length - 1; i++) {
     const bigram = second.substring(i, i + 2);
     const count = firstBigrams.has(bigram) ? firstBigrams.get(bigram) : 0;
@@ -81,7 +107,7 @@ const compareTwoStringsUsingDiceCoefficient = (first, second) => {
   return (2.0 * intersectionSize) / (first.length + second.length - 2);
 };
 
-const browserSupportsPolyfills = () => {
+export const browserSupportsPolyfills = (): boolean => {
   return (
     typeof window !== 'undefined' &&
     window.navigator !== undefined &&
@@ -90,12 +116,4 @@ const browserSupportsPolyfills = () => {
     (window.AudioContext !== undefined ||
       window.webkitAudioContext !== undefined)
   );
-};
-
-export {
-  debounce,
-  concatTranscripts,
-  commandToRegExp,
-  compareTwoStringsUsingDiceCoefficient,
-  browserSupportsPolyfills,
 };
