@@ -5,6 +5,7 @@ import Letter from '@components/ui/Letter';
 import { Button } from '@components/ui';
 
 import s from './Anagramma.module.scss';
+import Timer from '@components/ui/Timer';
 
 // Преобразует строку в массив случайных элементов
 function shuffleArray(str) {
@@ -84,6 +85,9 @@ const Anagramma = (props) => {
 
   return (
     <div className={rootClassName}>
+      <div className={s.timer}>
+        <Timer milliseconds={90000} />
+      </div>
       <p className={s.title}>
         Перемешаны буквы слова, необходимо поставить на нужное место
       </p>
