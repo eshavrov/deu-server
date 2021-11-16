@@ -14,9 +14,9 @@ const listWords = [
   { id: 4, value: 'природа' },
 ];
 
-const realWord = 'Holz';
-
 const Translation = (props) => {
+  const word = 'Holz';
+
   const rootClassName = cn(s.container);
 
   return (
@@ -24,12 +24,12 @@ const Translation = (props) => {
       <p className={s.title}>
         Перемешаны буквы слова, необходимо поставить на нужное место
       </p>
-      <div className={s.word}>
-        <p>{realWord}</p>
+      <div className={s.originalWord}>
+        <p>{word}</p>
       </div>
       <div className={s.words}>
         {listWords.map((item) => {
-          return <Word key={item.id} value={item.value} />;
+          return <Word className={s.word} key={item.id} value={item.value} />;
         })}
       </div>
       <div className={s.button__row}>

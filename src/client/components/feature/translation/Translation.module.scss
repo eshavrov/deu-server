@@ -12,7 +12,7 @@
   margin: 170px auto 100px auto;
 }
 
-.word {
+.originalWord {
   font-weight: bold;
   font-size: 64px;
 }
@@ -21,6 +21,10 @@
   display: flex;
   justify-content: center;
   margin-bottom: 50px;
+}
+
+.word {
+  margin: var(--letter-margin);
 }
 
 .button__row {
