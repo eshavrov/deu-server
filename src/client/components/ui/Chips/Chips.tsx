@@ -1,5 +1,6 @@
-import { Cross } from '@components/icons';
 import React from 'react';
+
+import { Cross } from '@components/icons';
 
 import s from './Chips.module.scss';
 

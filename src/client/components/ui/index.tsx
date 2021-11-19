@@ -8,3 +8,5 @@ export { default as Checkbox } from './Checkbox';
 export { default as Select } from './Select';
 export { default as Chips, Chip } from './Chips';
 export { default as Word } from './Word';
+export { default as Carousel } from './Carousel';
+export { default as ProgressBar } from './ProgressBar';
