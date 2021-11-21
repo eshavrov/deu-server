@@ -25,6 +25,7 @@ export default function Home({}: InferGetStaticPropsType<
     <>
       {/* <Header title={title} description={description} /> */}
       <Grid>
+        <BoxItem slug="/feature/memorize">Заучивание слов</BoxItem>
         <BoxItem slug="/feature/anagramma">Анаграмма</BoxItem>
         <BoxItem slug="/feature/test2">Правильный порядок слов</BoxItem>
       </Grid>
