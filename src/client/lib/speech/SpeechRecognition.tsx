@@ -204,7 +204,7 @@ export const useSpeechRecognition = ({
     transcript,
     interimTranscript,
     finalTranscript,
-    listening,
+    isListening: listening,
     resetTranscript,
   };
 };
@@ -231,10 +231,15 @@ const SpeechRecognition = {
   startListening: async ({
     continuous,
     language,
+    onStart,
   }: IStartListening = {}): Promise<void> => {
     const recognitionManager = SpeechRecognition.getRecognitionManager();
 
     await recognitionManager.startListening({ continuous, language });
+
+    if (onStart) {
+      onStart();
+    }
   },
 
   stopListening: async (): Promise<void> => {

@@ -60,30 +60,65 @@ const useVoiceConfig = () => {
   };
 };
 
-export const useVoicesConfig = () => {
+interface VoicesConfigOptions {
+  onEnd?: () => void;
+}
+
+export const useVoicesConfig = (options: VoicesConfigOptions = {}) => {
+  const { onEnd } = options;
+
   const main = useVoiceConfig();
   const learn = useVoiceConfig();
+
+  const [isSupported, setIsSupported] = React.useState(false);
+  const [isSpeaking, setIsSpeaking] = React.useState(false);
+
+  const _onEnd = () => {
+    setIsSpeaking(false);
+
+    if (onEnd) {
+      onEnd();
+    }
+  };
 
   const speechSynth = React.useRef({
     synth: undefined,
   });
 
-  const speak = (voice) => () => {
+  const speak = (voice) => (message?) => {
     if (!speechSynth.current) return;
+    if (!isSupported) {
+      return;
+    }
 
     const { synth } = speechSynth.current;
 
     if (!synth) return;
 
     synth.cancel();
+    setIsSpeaking(true);
 
-    const utterThis = new SpeechSynthesisUtterance(
-      phrase[voice.language] ?? phrase.default,
-    );
+    const utterMessage =
+      typeof message === 'string'
+        ? message
+        : phrase[voice.language] ?? phrase.default;
+
+    if (!utterMessage) return;
+
+    const utterThis = new SpeechSynthesisUtterance(utterMessage);
 
     utterThis.voice = voice.origin;
+    utterThis.onend = _onEnd;
 
     synth.speak(utterThis);
+  };
+
+  const cancel = () => {
+    // if (!isSupported) {
+    //   return;
+    // }
+    setIsSpeaking(false);
+    window.speechSynthesis.cancel();
   };
 
   const processVoices = (voices) => {
@@ -134,6 +169,12 @@ export const useVoicesConfig = () => {
   }, []);
 
   React.useEffect(() => {
+    if (typeof window !== 'undefined' && window.speechSynthesis) {
+      setIsSupported(true);
+    } else {
+      return;
+    }
+
     speechSynth.current.synth = window.speechSynthesis;
 
     getVoices();
@@ -176,12 +217,23 @@ export const useVoicesConfig = () => {
   }, [main.lang, main.voices, learn.lang, learn.voices]);
 
   return {
+    isSpeaking,
+    isSupported,
     main: {
       lang: main.lang,
       setLang: main.setLang,
       apply: main.apply,
       allVoices: main.existVoices,
       voices: main.voices,
+      speak: (message) => {
+        const voices = main.voices.map((id) => {
+          return main.existVoices.find((voice) => voice.id === id);
+        });
+
+        if (voices[0]) {
+          return speak(voices[0])(message);
+        }
+      },
     },
 
     learn: {
@@ -190,9 +242,19 @@ export const useVoicesConfig = () => {
       apply: learn.apply,
       allVoices: learn.existVoices,
       voices: learn.voices,
+      speak: (message) => {
+        const voices = learn.voices.map((id) => {
+          return learn.existVoices.find((voice) => voice.id === id);
+        });
+
+        if (voices[0]) {
+          return speak(voices[0])(message);
+        }
+      },
     },
 
     save,
     speak,
+    cancel,
   };
 };

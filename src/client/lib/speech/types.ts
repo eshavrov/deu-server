@@ -1,6 +1,7 @@
 export interface IStartListening {
   continuous?: boolean;
   language?: string;
+  onStart?: () => void;
 }
 
 export type StartListening = (value?: IStartListening) => Promise<void>;

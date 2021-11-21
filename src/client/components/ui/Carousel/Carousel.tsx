@@ -18,6 +18,7 @@ enum TransitionStatus {
   current,
   prev,
   next,
+  wait,
 }
 
 export const useCarousel = (items, index, setIndex) => {
@@ -58,25 +59,23 @@ export const useCarousel = (items, index, setIndex) => {
   );
 
   const onTransitionEnd = React.useCallback(() => {
-    switch (transitionStatus) {
-      case TransitionStatus.next: {
-        onChangeNext();
+    setTransitionStatus((transitionStatus) => {
+      switch (transitionStatus) {
+        case TransitionStatus.next: {
+          onChangeNext();
+          return TransitionStatus.wait;
+        }
 
-        break;
+        case TransitionStatus.prev: {
+          onChangePrev();
+          return TransitionStatus.wait;
+        }
+
+        default: {
+          return transitionStatus;
+        }
       }
-
-      case TransitionStatus.prev: {
-        onChangePrev();
-
-        break;
-      }
-
-      default: {
-        return;
-      }
-    }
-
-    setTransitionStatus(TransitionStatus.current);
+    });
   }, [transitionStatus]);
 
   React.useEffect(() => {

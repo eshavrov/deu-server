@@ -1,0 +1,69 @@
+.root {
+  background-color: #fff;
+  color: #000;
+
+  &--hide {
+    display: none;
+  }
+
+  &--success {
+    background-color: #33d976;
+    color: #fff;
+  }
+
+  &--error {
+    background-color: #ff6240;
+    color: #fff;
+  }
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  appearance: none;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+  color: var(--accent-0);
+
+  &:hover {
+    color: var(--accent-9);
+  }
+
+  &:focus {
+    outline: 3px solid var(--web-ui_focus-color);
+    outline-offset: var(--web-ui_outline-offset);
+    color: var(--web-ui_focus-color);
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+}
+
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.wrapper {
+  min-height: 6rem; // 107px
+  display: grid;
+  grid-gap: 4.5rem;
+  grid-template-columns: min-content 1fr min-content;
+
+  align-items: center;
+  background-color: inherit;
+
+  @media (max-width: 600px) {
+    grid-gap: 1.5rem;
+  }
+}
+
+.message {
+  text-align: center;
+  font-size: 3rem;
+  padding: 0;
+  margin: 0;
+}

@@ -2,20 +2,11 @@ import cn from 'classnames';
 import React from 'react';
 
 import Topbar from './Topbar';
+import Footer, { Status } from './Footer';
 
 import s from './ModuleLayout.module.scss';
 
-type Page = any;
-type Category = any;
-
-interface Props {
-  pageProps: {
-    pages?: Page[];
-    categories?: Category[];
-  };
-}
-
-const ModuleLayout: React.FC<Props> = ({ children }) => {
+const ModuleLayout: React.FC = ({ children }) => {
   const [value, setValue] = React.useState(0);
 
   React.useEffect(() => {
@@ -30,11 +21,15 @@ const ModuleLayout: React.FC<Props> = ({ children }) => {
     return () => clearInterval(interval);
   }, []);
 
+  const status =
+    value < 33 ? Status.none : value > 66 ? Status.success : Status.error;
+
   return (
     <div className={cn(s.root)}>
       <div className={s.wrapper}>
         <Topbar value={value} />
         <main className={s.main}>{children}</main>
+        <Footer status={status} />
       </div>
     </div>
   );

@@ -73,7 +73,6 @@ export const compareTwoStringsUsingDiceCoefficient = (
   first: string,
   second: string,
 ): number => {
-  console.log('compareTwoStringsUsingDiceCoefficient', first, second);
   first = first.replace(/\s+/g, '').toLowerCase();
   second = second.replace(/\s+/g, '').toLowerCase();
 
