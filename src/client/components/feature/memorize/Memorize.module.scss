@@ -1,0 +1,89 @@
+$breakpoint-inner: 700px;
+
+.root {
+  grid-gap: 1rem;
+  display: grid;
+
+  grid-template-rows: min-content minmax(0, 1fr);
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  transform: translateZ(0);
+  min-height: 600px;
+
+  @media (min-width: $breakpoint-inner) {
+    min-height: 600px;
+    overflow: visible;
+    width: 800px;
+  }
+}
+
+.title {
+  color: #2a2a38;
+}
+
+.word {
+  font-size: 62px;
+  font-weight: 700;
+  user-select: none;
+  color: #2a2a38;
+
+  &--das {
+    color: #6b5ff0;
+  }
+
+  &--die {
+    color: #ff6240;
+  }
+
+  &--der {
+    color: #33d976;
+  }
+}
+
+.content {
+  display: grid;
+  grid-template-rows: min-content minmax(0, 1fr) min-content;
+}
+
+@keyframes anim {
+  50% {
+    opacity: 0.8;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.context {
+  color: #2a2a38;
+  font-size: 24px;
+  opacity: 0;
+  transform: translateY(10px);
+
+  animation: anim 0.5s forwards;
+  animation-timing-function: ease;
+
+  animation-delay: 1.5s;
+
+  &:nth-child(1) {
+    animation-delay: 0s;
+  }
+
+  &:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  &:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+}
+
+.buttons {
+  display: grid;
+  grid-gap: 1rem;
+  margin: auto;
+  grid-template-columns: min-content min-content;
+}

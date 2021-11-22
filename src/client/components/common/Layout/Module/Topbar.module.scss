@@ -1,0 +1,52 @@
+.root {
+  background-color: #fff;
+}
+
+.back {
+  display: flex;
+  align-items: center;
+  appearance: none;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+  color: var(--accent-4);
+
+  &:hover {
+    color: var(--accent-6);
+  }
+
+  &:focus {
+    outline: 3px solid var(--web-ui_focus-color);
+    outline-offset: var(--web-ui_outline-offset);
+    color: var(--web-ui_focus-color);
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+}
+
+.cross {
+  width: 1.5rem;
+  height: 1.5rem;
+
+  @media (max-width: 600px) {
+    width: 1rem;
+    height: 1rem;
+  }
+}
+
+.wrapper {
+  min-height: 5rem; // 74px
+  display: grid;
+  grid-gap: 4.5rem;
+  grid-template-columns: min-content 1fr;
+
+  align-items: center;
+  background-color: #fff;
+
+  @media (max-width: 600px) {
+    grid-gap: 1.5rem;
+  }
+}

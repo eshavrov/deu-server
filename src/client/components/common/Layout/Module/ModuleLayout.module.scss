@@ -1,0 +1,40 @@
+$breakpoint-inner: 700px;
+
+.root {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: min-content 1fr min-content;
+  min-height: 460px;
+  overflow: hidden;
+}
+
+.main {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: minmax(0, 1fr);
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 19px;
+
+  @media (min-width: $breakpoint-inner) {
+    grid-template-columns: min-content;
+    grid-template-rows: min-content;
+  }
+}
