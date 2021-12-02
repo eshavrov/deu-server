@@ -1,0 +1,35 @@
+.container {
+  text-align: center;
+}
+
+.title {
+  max-width: 736px;
+  font-weight: 500;
+  font-size: 36px;
+  text-align: center;
+  line-height: 42px;
+  color: #2A2A38;
+  margin: 170px auto 100px auto;
+}
+
+.originalWord {
+  font-weight: bold;
+  font-size: 64px;
+}
+
+.words {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.word {
+  margin: var(--letter-margin);
+}
+
+.button__row {
+  max-width: 1068px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+}

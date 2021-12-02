@@ -28,6 +28,7 @@ export default function Home({}: InferGetStaticPropsType<
         <BoxItem slug="/feature/memorize">Заучивание слов</BoxItem>
         <BoxItem slug="/feature/anagramma">Анаграмма</BoxItem>
         <BoxItem slug="/feature/test2">Правильный порядок слов</BoxItem>
+        <BoxItem slug="/feature/translation">Выбери правильный перевод</BoxItem>
       </Grid>
     </>
   );
